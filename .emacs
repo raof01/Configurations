@@ -1,13 +1,8 @@
 (add-to-list 'load-path ".emacs.d/site-lisp")
 
 
-;; Platform specific settings
 (if (string-equal system-type "darwin")
-    (progn
       (add-to-list 'load-path "/Users/raof01/.emacs.d/elpa/company-0.9.0")
-      (add-to-list 'load-path "/Users/raof01/.emacs.d/elpa/cpputils-cmake-20160515.103")
-      (setq cmake-mode-path "/usr/local/Cellar/cmake/3.5.2/share/emacs/site-lisp/cmake/cmake-mode.el")
-      )
   )
 
 ;; Global settings
@@ -16,10 +11,6 @@
 (setq backup-inhibited t)
 
 (custom-set-variables
- ;; custom-set-variables was added by Custom.
- ;; If you edit it by hand, you could mess it up, so be careful.
- ;; Your init file should contain only one such instance.
- ;; If there is more than one, they won't work right.
  '(c-basic-offset 4)
  '(c-default-style
    (quote
@@ -29,10 +20,6 @@
  '(kill-whole-line t)
 )
 (custom-set-faces
- ;; custom-set-faces was added by Custom.
- ;; If you edit it by hand, you could mess it up, so be careful.
- ;; Your init file should contain only one such instance.
- ;; If there is more than one, they won't work right.
  '(default ((t (:inherit nil :stipple nil :background "gray20" :foreground "white smoke" :inverse-video nil :box nil :strike-through nil :overline nil :underline nil :slant normal :weight normal :height 125 :width normal :foundry "nil" :family "Monaco")))))
 
 (setq ido-enable-flex-matching t)
@@ -65,22 +52,6 @@
 
 ;; Flymake
 (require 'flymake)
-;;(require 'rfringe)
-
-;; CMake
-(setq auto-mode-alist
-	  (append
-	   '(("CMakeLists\\.txt\\'" . cmake-mode))
-	   '(("\\.cmake\\'" . cmake-mode))
-	   auto-mode-alist))
-
-(autoload 'cmake-mode cmake-mode-path t)
-(require 'cpputils-cmake)
-(add-hook 'c-mode-common-hook
-          (lambda ()
-            (if (derived-mode-p 'c-mode 'c++-mode)
-                (cppcm-reload-all)
-              )))
 
 ;; melpa
 (require 'package)
@@ -93,3 +64,4 @@
 
 (require 'init-octave)
 (require 'init-latex-pdf)
+(require 'init-cpputils-cmake)
