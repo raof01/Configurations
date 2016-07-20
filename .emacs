@@ -18,6 +18,7 @@
  '(default ((t (:inherit nil :stipple nil :background "gray20" :foreground "white smoke" :inverse-video nil :box nil :strike-through nil :overline nil :underline nil :slant normal :weight normal :height 125 :width normal :foundry "nil" :family "Monaco")))))
 
 (add-to-list 'load-path "/Users/raof01/.emacs.d/site-lisp")
+(add-to-list 'load-path "/Users/raof01/.emacs.d/elpa/company-0.9.0")
 (autoload 'octave-mode "octave-mod" nil t)
 (setq auto-mode-alist
       (cons '("\\.m$" . octave-mode) auto-mode-alist))
@@ -38,3 +39,16 @@
 (desktop-save-mode 1)
 ;(require 'highlight)
 ;(show-paren-mode 1)
+(require 'company)
+(dolist (hook (list
+               'emacs-lisp-mode-hook
+               'lisp-mode-hook
+               'lisp-interaction-mode-hook
+               'scheme-mode-hook
+               'c-mode-common-hook
+               'python-mode-hook
+               'haskell-mode-hook
+               'asm-mode-hook
+               'emms-tag-editor-mode-hook
+               'sh-mode-hook))
+  (add-hook hook 'company-mode))
