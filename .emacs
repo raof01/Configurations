@@ -28,6 +28,7 @@
  ;; If there is more than one, they won't work right.
  '(inferior-octave-program octave-program)
  '(inferior-octave-prompt-read-only t)
+ '(kill-whole-line t)
  '(org-latex-pdf-process latex-pdf-process))
 (custom-set-faces
  ;; custom-set-faces was added by Custom.
