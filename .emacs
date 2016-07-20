@@ -1,17 +1,11 @@
-(add-to-list 'load-path "/Users/raof01/.emacs.d/site-lisp")
+(add-to-list 'load-path ".emacs.d/site-lisp")
 
-;; local variables
-(setq latex-pdf-process (quote
-			 ("pdflatex -interaction nonstopmode -output-directory %o %f" "pdflatex -interaction nonstopmode -output-directory %o %f" "pdflatex -interaction nonstopmode -output-directory %o %f")))
 
 ;; Platform specific settings
 (if (string-equal system-type "darwin")
     (progn
       (add-to-list 'load-path "/Users/raof01/.emacs.d/elpa/company-0.9.0")
       (add-to-list 'load-path "/Users/raof01/.emacs.d/elpa/cpputils-cmake-20160515.103")
-      (setq latex-pdf-process (quote
-			       ("/Library/TeX/texbin/pdflatex -interaction=nonstopmode -output-directory=%o %f" "/Library/TeX/texbin/pdflatex -interaction=nonstopmode -output-directory=%o %f" "/Library/TeX/texbin/pdflatex -interaction=nonstopmode -output-directory=%o %f"))
-	    )
       (setq cmake-mode-path "/usr/local/Cellar/cmake/3.5.2/share/emacs/site-lisp/cmake/cmake-mode.el")
       )
   )
@@ -33,7 +27,7 @@
      (c++-mode . "linux")
      (java-mode . "java"))))
  '(kill-whole-line t)
- '(org-latex-pdf-process latex-pdf-process))
+)
 (custom-set-faces
  ;; custom-set-faces was added by Custom.
  ;; If you edit it by hand, you could mess it up, so be careful.
@@ -98,3 +92,4 @@
 (package-initialize)
 
 (require 'init-octave)
+(require 'init-latex-pdf)
