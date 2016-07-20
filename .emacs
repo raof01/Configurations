@@ -1,18 +1,18 @@
+(add-to-list 'load-path "/Users/raof01/.emacs.d/site-lisp")
 
 ;; local variables
-(setq octave-program "octave")
 (setq latex-pdf-process (quote
 			 ("pdflatex -interaction nonstopmode -output-directory %o %f" "pdflatex -interaction nonstopmode -output-directory %o %f" "pdflatex -interaction nonstopmode -output-directory %o %f")))
 
 ;; Platform specific settings
 (if (string-equal system-type "darwin")
     (progn
-      (add-to-list 'load-path "/Users/raof01/.emacs.d/site-lisp")
       (add-to-list 'load-path "/Users/raof01/.emacs.d/elpa/company-0.9.0")
-      (setq octave-program "/usr/local/octave/3.8.0/bin/octave")
+      (add-to-list 'load-path "/Users/raof01/.emacs.d/elpa/cpputils-cmake-20160515.103")
       (setq latex-pdf-process (quote
 			       ("/Library/TeX/texbin/pdflatex -interaction=nonstopmode -output-directory=%o %f" "/Library/TeX/texbin/pdflatex -interaction=nonstopmode -output-directory=%o %f" "/Library/TeX/texbin/pdflatex -interaction=nonstopmode -output-directory=%o %f"))
 	    )
+      (setq cmake-mode-path "/usr/local/Cellar/cmake/3.5.2/share/emacs/site-lisp/cmake/cmake-mode.el")
       )
   )
 
@@ -26,8 +26,12 @@
  ;; If you edit it by hand, you could mess it up, so be careful.
  ;; Your init file should contain only one such instance.
  ;; If there is more than one, they won't work right.
- '(inferior-octave-program octave-program)
- '(inferior-octave-prompt-read-only t)
+ '(c-basic-offset 4)
+ '(c-default-style
+   (quote
+    ((c-mode . "linux")
+     (c++-mode . "linux")
+     (java-mode . "java"))))
  '(kill-whole-line t)
  '(org-latex-pdf-process latex-pdf-process))
 (custom-set-faces
@@ -37,17 +41,6 @@
  ;; If there is more than one, they won't work right.
  '(default ((t (:inherit nil :stipple nil :background "gray20" :foreground "white smoke" :inverse-video nil :box nil :strike-through nil :overline nil :underline nil :slant normal :weight normal :height 125 :width normal :foundry "nil" :family "Monaco")))))
 
-;; Octave
-(autoload 'octave-mode "octave-mod" nil t)
-(setq auto-mode-alist
-      (cons '("\\.m$" . octave-mode) auto-mode-alist))
-(add-hook 'octave-mode-hook
-          (lambda ()
-            (abbrev-mode 1)
-            (auto-fill-mode 1)
-            (if (eq window-system 'x)
-                (font-lock-mode 1))))
-(require 'octave-mod)
 (setq ido-enable-flex-matching t)
 (setq ido-everywhere t)
 (ido-mode 1)
@@ -75,3 +68,33 @@
                'emms-tag-editor-mode-hook
                'sh-mode-hook))
   (add-hook hook 'company-mode))
+
+;; Flymake
+(require 'flymake)
+;;(require 'rfringe)
+
+;; CMake
+(setq auto-mode-alist
+	  (append
+	   '(("CMakeLists\\.txt\\'" . cmake-mode))
+	   '(("\\.cmake\\'" . cmake-mode))
+	   auto-mode-alist))
+
+(autoload 'cmake-mode cmake-mode-path t)
+(require 'cpputils-cmake)
+(add-hook 'c-mode-common-hook
+          (lambda ()
+            (if (derived-mode-p 'c-mode 'c++-mode)
+                (cppcm-reload-all)
+              )))
+
+;; melpa
+(require 'package)
+(add-to-list 'package-archives
+             '("melpa-stable" . "https://stable.melpa.org/packages/") t)
+(when (< emacs-major-version 24)
+  ;; For important compatibility libraries like cl-lib
+  (add-to-list 'package-archives '("gnu" . "https://elpa.gnu.org/packages/")))
+(package-initialize)
+
+(require 'init-octave)
