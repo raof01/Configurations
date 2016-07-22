@@ -1,4 +1,4 @@
-(add-to-list 'load-path ".emacs.d/site-lisp")
+(add-to-list 'load-path "~/.emacs.d/site-lisp")
 
 
 ;; Global settings
@@ -13,10 +13,7 @@
     ((c-mode . "linux")
      (c++-mode . "linux")
      (java-mode . "java"))))
- '(kill-whole-line t)
-)
-(custom-set-faces
- '(default ((t (:inherit nil :stipple nil :background "gray20" :foreground "white smoke" :inverse-video nil :box nil :strike-through nil :overline nil :underline nil :slant normal :weight normal :height 125 :width normal :foundry "nil" :family "Monaco")))))
+ '(kill-whole-line t))
 
 (setq ido-enable-flex-matching t)
 (setq ido-everywhere t)
@@ -31,10 +28,10 @@
 ;(require 'highlight)
 ;(show-paren-mode 1)
 
+(require 'init-faces)
 
 ;; Flymake
 (require 'flymake)
-
 
 (require 'init-octave)
 (require 'init-latex-pdf)

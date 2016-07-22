@@ -1,7 +1,17 @@
 
-(if (string-equal system-type "darwin")
-      (add-to-list 'load-path "/Users/raof01/.emacs.d/elpa/company-0.9.0")
-  )
+(cond ((string-equal system-type "darwin")
+       (add-to-list 'load-path (concat "/Users/"
+				       (user-real-login-name)
+				       "/.emacs.d/elpa/company-0.9.0")
+		    )
+       )
+      ((string-equal system-type "windows-nt")
+       (add-to-list 'load-path (concat "c:/Users/"
+				       (user-real-login-name)
+				       "/AppData/Roaming/.emacs.d/elpa/company-0.9.0")
+		    )
+       )
+      )
 
 ;; Company mode
 (require 'company)

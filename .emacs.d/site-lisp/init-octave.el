@@ -1,8 +1,12 @@
 (setq octave-program "octave")
 
-(if (string-equal system-type "darwin")
-    (setq octave-program "/usr/local/octave/3.8.0/bin/octave")
-  )
+(cond ((string-equal system-type "darwin")
+       (setq octave-program "/usr/local/octave/3.8.0/bin/octave")
+       )
+      ((string-equal system-type "windows-nt")
+       (setq octave-program "d:/Octave/Octave-4.0.3/bin/octave-cli.exe")
+       )
+      )
 
 (custom-set-variables
  '(inferior-octave-program octave-program)
