@@ -2,7 +2,7 @@
 (cond ((string-equal system-type "darwin")
        (add-to-list 'load-path (concat "/Users/"
 				       (user-real-login-name)
-				       "/.emacs.d/elpa/cpputils-cmake-20160515.103")
+				       "/.emacs.d/elpa/cpputils-cmake-5.5")
 		    )
        )
       ((string-equal system-type "windows-nt")
