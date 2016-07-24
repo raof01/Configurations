@@ -38,3 +38,4 @@
 (require 'init-cpputils-cmake)
 (require 'init-company)
 (require 'init-melpa)
+(require 'init-org)
