@@ -40,3 +40,4 @@
 (require 'init-company)
 (require 'init-melpa)
 (require 'init-org)
+(require 'init-haskell)
