@@ -13,6 +13,7 @@
     ((c-mode . "linux")
      (c++-mode . "linux")
      (java-mode . "java"))))
+ '(ns-right-alternate-modifier (quote control))
  '(kill-whole-line t))
 
 (setq ido-enable-flex-matching t)
