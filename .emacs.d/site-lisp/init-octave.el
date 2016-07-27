@@ -2,6 +2,8 @@
 
 (cond ((string-equal system-type "darwin")
        (setq octave-program "/Applications/Octave.app/Contents/Resources/usr/bin/octave"))
+      ((string-equal system-type "gnu/linux")
+       (setq octave-program "/usr/bin/octave"))
       ((string-equal system-type "windows-nt")
        (setq octave-program "d:/Octave/Octave-4.0.3/bin/octave-cli.exe")))
 

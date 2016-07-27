@@ -3,6 +3,10 @@
        (add-to-list 'load-path (concat "/Users/"
 				       (user-real-login-name)
 				       "/.emacs.d/elpa/company-0.9.0")))
+      ((string-equal system-type "gnu/linux")
+       (add-to-list 'load-path (concat "/home/"
+				       (user-real-login-name)
+				       "/.emacs.d/elpa/company-0.9.0")))
       ((string-equal system-type "windows-nt")
        (add-to-list 'load-path (concat "c:/Users/"
 				       (user-real-login-name)

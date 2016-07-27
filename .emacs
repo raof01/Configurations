@@ -1,5 +1,6 @@
 (add-to-list 'load-path "~/.emacs.d/site-lisp")
 
+(require 'init-melpa)
 
 ;; Global settings
 (setq inhibit-startup-message t)
@@ -38,7 +39,6 @@
 (require 'init-latex-pdf)
 (require 'init-cpputils-cmake)
 (require 'init-company)
-(require 'init-melpa)
 (require 'init-org)
 (require 'init-haskell)
 (require 'xcscope)
