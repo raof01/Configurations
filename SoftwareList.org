@@ -1,0 +1,40 @@
+* Mac OS X
+** Emacs
+** XCode
+** CMake
+** Git
+** LLVM
+** Evernote
+** MAMP
+** MediaWiki
+** Octave
+** Haskell
+** DrRacket
+** Python
+** PyCharm
+** QQ
+** Skype
+** MacTEX
+** Virtual Box
+** VLC
+** WeChat
+** Qt
+** Node.js
+** Oh-my-zsh
+
+* Linux
+** GCC/G++
+** CMAKE
+** Qt
+** Emacs
+** vim-gnome
+** Git
+** oh-my-zsh
+** Python
+** PyCharm
+** DrRacket
+** Haskell
+** Node.js
+** XAMPP
+** Octave
+** LLVM
