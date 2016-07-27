@@ -21,6 +21,7 @@
 ** Qt
 ** Node.js
 ** Oh-my-zsh
+** gtest
 
 * Linux
 ** GCC/G++
@@ -38,3 +39,4 @@
 ** XAMPP
 ** Octave
 ** LLVM
+** libgtest-dev
