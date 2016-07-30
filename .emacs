@@ -44,3 +44,4 @@
 (require 'init-xcscope)
 (require 'init-js2)
 (require 'init-node)
+(global-linum-mode)
