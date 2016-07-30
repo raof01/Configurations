@@ -41,4 +41,4 @@
 (require 'init-company)
 (require 'init-org)
 (require 'init-haskell)
-(require 'xcscope)
+(require 'init-xcscope)
