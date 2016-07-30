@@ -1,7 +1,7 @@
 (cond ((string-equal system-type "darwin")
        (setq haskell-mode-path (concat "/Users/"
 				       (user-real-login-name)
-				       "/.emacs.d/elpa/haskell-mode-13.20")))
+				       "/.emacs.d/elpa/haskell-mode-13.20.1")))
       ((string-equal system-type "gnu/linux")
        (setq haskell-mode-path (concat "/home/"
 				       (user-real-login-name)
