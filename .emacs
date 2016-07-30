@@ -42,3 +42,4 @@
 (require 'init-org)
 (require 'init-haskell)
 (require 'init-xcscope)
+(require 'init-js2)
