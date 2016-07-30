@@ -43,3 +43,4 @@
 (require 'init-haskell)
 (require 'init-xcscope)
 (require 'init-js2)
+(require 'init-node)
