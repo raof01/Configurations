@@ -45,3 +45,4 @@
 (require 'init-js2)
 (require 'init-node)
 (global-linum-mode)
+(hl-line-mode)
