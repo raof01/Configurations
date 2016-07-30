@@ -1,4 +1,4 @@
-(setq cursor-type '(bar . 3))
+(setq-default cursor-type '(bar . 3))
 
 (cond ((string-equal system-type "darwin")
        (custom-set-faces
