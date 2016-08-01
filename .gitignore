@@ -5,3 +5,9 @@ build/?
 *.tex
 *.html
 \#*\#
+.vscode
+cscope.out
+cscope.files
+cscope.in.out
+cscope.po.out
+
