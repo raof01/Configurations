@@ -1,2 +1,5 @@
-(setq nodejs-repl-command "/usr/local/bin/node")
+(cond ((string= system-type "darwin")
+       (setq nodejs-repl-command "/usr/local/bin/node"))
+      ((string= system-type "windows-nt")
+       (setq nodejs-repl-command "node")))
 (provide 'init-node)
