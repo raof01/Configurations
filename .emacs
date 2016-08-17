@@ -44,5 +44,7 @@
 (require 'init-xcscope)
 (require 'init-js2)
 (require 'init-node)
+(require 'init-html)
 (global-linum-mode)
 (global-hl-line-mode t)
+
