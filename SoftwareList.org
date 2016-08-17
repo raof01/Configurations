@@ -1,5 +1,21 @@
 ** Mac OS X
     -  Emacs
+
+      -   xcscope             
+      -   skewer-mode         
+      -   simple-httpd        
+      -   popup               
+      -   org                 
+      -   nodejs-repl         
+      -   js2-mode            
+      -   haskell-mode        
+      -   csharp-mode         
+      -   cpputils-cmake      
+      -   company             
+      -   auto-complete       
+      -   angular-mode        
+      -   ac-octave           
+      -   ac-html             
     -  XCode
     -  CMake
     -  Git
@@ -33,6 +49,22 @@
     -  CMAKE
     -  Qt
     -  Emacs
+
+      -   xcscope             
+      -   skewer-mode         
+      -   simple-httpd        
+      -   popup               
+      -   org                 
+      -   nodejs-repl         
+      -   js2-mode            
+      -   haskell-mode        
+      -   csharp-mode         
+      -   cpputils-cmake      
+      -   company             
+      -   auto-complete       
+      -   angular-mode        
+      -   ac-octave           
+      -   ac-html             
     -  vim-gnome
     -  Git
     -  oh-my-zsh
