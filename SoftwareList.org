@@ -15,7 +15,9 @@
       -   auto-complete       
       -   angular-mode        
       -   ac-octave           
-      -   ac-html             
+      -   ac-html 
+      -   tern
+      -   tern-complete?
     -  XCode
     -  CMake
     -  Git
@@ -39,6 +41,11 @@
     -  Oh-my-zsh
     -  gtest
     -  NodeJS
+       - angular
+       - jasmine
+       - karma
+       - protractor
+       - tern
     -  Brackets
     -  Docker
     -  TensorFlow
@@ -64,7 +71,9 @@
       -   auto-complete       
       -   angular-mode        
       -   ac-octave           
-      -   ac-html             
+      -   ac-html     
+      -   tern
+      -   tern-complete
     -  vim-gnome
     -  Git
     -  oh-my-zsh
@@ -73,6 +82,11 @@
     -  DrRacket
     -  Haskell
     -  Node.js
+       - angular
+       - jasmine
+       - karma
+       - protractor
+       - tern
     -  XAMPP
     -  Octave
     -  LLVM
