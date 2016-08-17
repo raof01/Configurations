@@ -42,7 +42,7 @@
 (require 'init-org)
 (require 'init-haskell)
 (require 'init-xcscope)
-(require 'init-js2)
+(require 'init-js3)
 (require 'init-node)
 (require 'init-html)
 (global-linum-mode)
