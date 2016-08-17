@@ -22,6 +22,9 @@
 ** Node.js
 ** Oh-my-zsh
 ** gtest
+** NodeJS
+** Brackets
+** visual studio code
 
 * Linux
 ** GCC/G++
@@ -40,3 +43,5 @@
 ** Octave
 ** LLVM
 ** libgtest-dev
+** Brackets
+** visual studio code?
