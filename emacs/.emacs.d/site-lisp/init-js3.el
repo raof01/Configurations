@@ -1,6 +1,6 @@
 ;;;; load & configure js2-mode 
 (autoload 'js3-mode "js3-mode" nil t)
-(add-to-list 'auto-mode-alist '("\\.js$" . js2-mode))
+(add-to-list 'auto-mode-alist '("\\.js$" . js3-mode))
 
 (setq-default auto-complete-mode t)
 
