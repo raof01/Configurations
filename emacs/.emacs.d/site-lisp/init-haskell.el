@@ -16,5 +16,6 @@
 (require 'haskell-mode)
 (add-to-list 'Info-default-directory-list haskell-mode-path)
 (require 'haskell)
+(interactive-haskell-mode)
 (provide 'init-haskell)
 
