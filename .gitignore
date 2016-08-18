@@ -11,3 +11,4 @@ cscope.files
 cscope.in.out
 cscope.po.out
 node_modules
+.tern-port
