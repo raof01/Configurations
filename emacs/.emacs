@@ -45,6 +45,7 @@
 (require 'init-js3)
 (require 'init-node)
 (require 'init-html)
+(require 'init-ecb)
 (global-linum-mode)
 (global-hl-line-mode t)
 
