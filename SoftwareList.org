@@ -50,6 +50,7 @@
     -  Docker
     -  TensorFlow
     -  visual studio code
+    - docker
 
 ** Linux
     -  GCC/G++
@@ -95,3 +96,4 @@
     -  Docker
     -  TensorFlow
     -  visual studio code?
+    - docker
