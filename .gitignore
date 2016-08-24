@@ -1,6 +1,6 @@
 .DS_Store
 CMakeLists.txt.user
-build/?
+build
 *.pdf
 *.tex
 *.html
