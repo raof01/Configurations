@@ -1,7 +1,9 @@
 (cond ((string-equal system-type "darwin")
-       (setq haskell-mode-path (concat "/Users/"
-				       (user-real-login-name)
-				       "/.emacs.d/elpa/haskell-mode-13.20.1")))
+       (progn
+         (setq haskell-process-path-ghci "/usr/local/bin/ghci")
+         (setq haskell-mode-path (concat "/Users/"
+                                   (user-real-login-name)
+                                   "/.emacs.d/elpa/haskell-mode-13.20.1"))))
       ((string-equal system-type "windows-nt")
        (setq haskell-mode-path (concat "c:/Users/"
 				       (user-real-login-name)
