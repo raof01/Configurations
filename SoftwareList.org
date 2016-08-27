@@ -51,6 +51,7 @@
     -  TensorFlow
     -  visual studio code
     - docker
+    - Chrome
 
 ** Linux
     -  GCC/G++
@@ -97,3 +98,4 @@
     -  TensorFlow
     -  visual studio code?
     - docker
+    - Chrome
