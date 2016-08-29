@@ -20,6 +20,7 @@
       -   tern-complete?
     -  XCode
     -  CMake
+    -  MacTex
     -  Git
     -  LLVM
     -  Evernote
@@ -99,3 +100,4 @@
     -  visual studio code?
     - docker
     - Chrome
+    - texlive
