@@ -19,6 +19,7 @@
       -   tern
       -   tern-complete?
     -  XCode
+    - Xmind
     -  CMake
     -  MacTex
     -  Git
@@ -101,3 +102,4 @@
     - docker
     - Chrome
     - texlive
+    - XMind?
