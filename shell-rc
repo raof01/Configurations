@@ -1,0 +1,3 @@
+alias h="history"
+alias ls="ls -GF"
+export NODE_PATH=/usr/local/lib/node_modules
