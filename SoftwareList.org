@@ -48,6 +48,10 @@
        - karma
        - protractor
        - tern
+       - express
+       - express-generator
+       - pug
+       - jstransformer
     -  Brackets
     -  Docker
     -  TensorFlow
@@ -91,6 +95,10 @@
        - karma
        - protractor
        - tern
+       - express
+       - express-generator
+       - pug
+       - jstransformer
     -  XAMPP
     -  Octave
     -  LLVM
