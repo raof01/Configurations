@@ -42,6 +42,7 @@
     -  Node.js
     -  Oh-my-zsh
     -  gtest
+    - XQuartz
     -  NodeJS
        - angular
        - jasmine
