@@ -20,6 +20,7 @@
       -   tern-complete?
     -  XCode
     - Xmind
+    - pyenv
     -  CMake
     -  MacTex
     -  Git
