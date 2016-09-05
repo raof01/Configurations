@@ -19,6 +19,7 @@
       -   tern
       -   tern-complete?
     -  XCode
+    - HtTrack
     - Xmind
     -  CMake
     -  MacTex
