@@ -21,6 +21,7 @@
     -  XCode
     - HtTrack
     - Xmind
+    - pyenv
     -  CMake
     -  MacTex
     -  Git
@@ -43,12 +44,17 @@
     -  Node.js
     -  Oh-my-zsh
     -  gtest
+    - XQuartz
     -  NodeJS
        - angular
        - jasmine
        - karma
        - protractor
        - tern
+       - express
+       - express-generator
+       - pug
+       - jstransformer
     -  Brackets
     -  Docker
     -  TensorFlow
@@ -92,6 +98,10 @@
        - karma
        - protractor
        - tern
+       - express
+       - express-generator
+       - pug
+       - jstransformer
     -  XAMPP
     -  Octave
     -  LLVM
