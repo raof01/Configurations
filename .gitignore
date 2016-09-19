@@ -1,6 +1,6 @@
 .DS_Store
 CMakeLists.txt.user
-build/?
+build
 *.pdf
 *.tex
 *.html
@@ -13,3 +13,4 @@ cscope.po.out
 node_modules
 .tern-port
 __pycache__
+*.pyc
