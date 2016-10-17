@@ -59,7 +59,7 @@
     -  Docker
     -  TensorFlow
     -  visual studio code
-    - docker
+    - Meld
     - Chrome
 
 ** Linux
@@ -114,3 +114,4 @@
     - Chrome
     - texlive
     - XMind?
+    - Meld
