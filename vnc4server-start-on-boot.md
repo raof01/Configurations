@@ -1,0 +1,4 @@
+- sudo cp vnc4server /etc/init.d/vnc4server
+- sudo chmod +x /etc/init.d/vnc4server
+- sudo update-rc.d vnc4server defaults
+- sudo service vnc4server start
