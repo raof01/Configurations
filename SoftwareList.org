@@ -115,3 +115,5 @@
     - texlive
     - XMind?
     - Meld
+** Windows
+ - Telerik Fiddler Web Debugger
