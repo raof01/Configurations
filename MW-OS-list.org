@@ -1,0 +1,10 @@
+** OS
+ - Linux
+ - Windows
+ - Mac OS
+** MW
+ - RabbitMQ
+ - SignalR
+ - Storm
+ - SCP
+ - 
