@@ -1,6 +1,6 @@
 ** Mac OS X
     -  Emacs
-
+      -   intero
       -   xcscope             
       -   skewer-mode         
       -   simple-httpd        
