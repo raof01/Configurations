@@ -1,0 +1,3 @@
+** Cloud design patterns:
+  - AWS: http://en.clouddesignpattern.org/index.php/Main_Page
+  - M$: https://docs.microsoft.com/en-us/azure/architecture/patterns/
