@@ -46,6 +46,7 @@
 (require 'init-node)
 (require 'init-html)
 (require 'init-racket)
+(require 'init-scheme-complete)
 (global-linum-mode)
 (global-hl-line-mode t)
 
