@@ -12,6 +12,12 @@
 				       (user-real-login-name)
 				       "/AppData/Roaming/.emacs.d/elpa/company-0.9.0"))))
 
+(defun racket-mode-hook ()
+  (when (and (stringp buffer-file-name)
+             (string-match "\\.rkt\\'" buffer-file-name))
+    (insert "OK")
+    (orgtbl-mode)))
+
 ;; Company mode
 (require 'company)
 (dolist (hook (list
@@ -24,7 +30,8 @@
                'haskell-mode-hook
                'asm-mode-hook
                'emms-tag-editor-mode-hook
-               'sh-mode-hook))
+               'sh-mode-hook
+	       'racket-mode-hook))
   (add-hook hook 'company-mode))
 
 (provide 'init-company)
