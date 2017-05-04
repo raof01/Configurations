@@ -21,6 +21,10 @@
 (setq ido-everywhere t)
 (ido-mode 1)
 
+;; paren-mode
+(show-paren-mode t)
+;(setq show-paren-style 'expression)
+
 ;; Window number
 (require 'window-number)
 (window-number-mode)
