@@ -2,7 +2,8 @@
 
 (cond ((string-equal system-type "darwin")
        (custom-set-faces
-	'(default ((t (:inherit nil :stipple nil :background "gray20" :foreground "white smoke" :inverse-video nil :box nil :strike-through nil :overline nil :underline nil :slant normal :weight normal :height 125 :width normal :foundry "nil" :family "Monaco")))))
+	'(default ((t (:inherit nil :stipple nil :background "gray20" :foreground "white smoke" :inverse-video nil :box nil :strike-through nil :overline nil :underline nil :slant normal :weight normal :height 125 :width normal :foundry "nil" :family "Monaco"))))
+        '(show-paren-match ((t (:background "dark goldenrod")))))
        )
       ((string-equal system-type "windows-nt")
        (custom-set-faces
