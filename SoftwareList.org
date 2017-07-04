@@ -117,3 +117,5 @@
     - Meld
 ** Windows
  - Telerik Fiddler Web Debugger
+** Browser
+ - SwitchyOmega
