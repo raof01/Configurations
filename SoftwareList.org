@@ -61,6 +61,7 @@
     -  visual studio code
     - Meld
     - Chrome
+    - SSHFS
 
 ** Linux
     -  GCC/G++
@@ -115,7 +116,9 @@
     - texlive
     - XMind?
     - Meld
+    - SSHFS
 ** Windows
  - Telerik Fiddler Web Debugger
+ - Win-SSHFS
 ** Browser
  - SwitchyOmega
