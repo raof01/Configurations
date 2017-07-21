@@ -1,5 +1,13 @@
-** Mac OS X
-    -  Emacs
+** Dev Tools
+  - Chrome
+  - Anaconda
+  - Pycharm
+  - MongoDb
+  - Postman
+  - Mongobooster
+  - Git
+  - meld
+  - Emacs
       -   intero
       -   xcscope             
       -   skewer-mode         
@@ -18,6 +26,8 @@
       -   ac-html 
       -   tern
       -   tern-complete?
+
+** Mac OS X
     -  XCode
     - HtTrack
     - Xmind
