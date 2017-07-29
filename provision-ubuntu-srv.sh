@@ -98,7 +98,7 @@ function download_pycharm()
 }
 
 
-PKGS="lxde git gitk meld emacs24 g++ gcc cmake zsh octave vim-gnome vsftpd"
+PKGS="lxde git gitk meld emacs24 g++ gcc cmake zsh octave vim-gnome vsftpd haskell-platform"
 
 for P in $PKGS
 do
