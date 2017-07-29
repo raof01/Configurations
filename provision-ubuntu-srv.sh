@@ -29,7 +29,7 @@ function print_done_install()
 function install_pkg()
 {
     print_start_install $1
-    apt-get --assume-yes install $1 # >> $LOG_FILE 2>&1
+    apt-get --assume-yes --fix-missing install $1 # >> $LOG_FILE 2>&1
     error_exit $? "${RED}-> Failed to install $1${NC}"
     print_done_install $1
 }
@@ -40,7 +40,7 @@ function install_google_chrome()
     wget -q -O - https://dl-ssl.google.com/linux/linux_signing_key.pub | apt-key add -
     sh -c 'echo "deb [arch=amd64] http://dl.google.com/linux/chrome/deb/ stable main" >> /etc/apt/sources.list.d/google-chrome.list'
     apt-get update
-    apt-get --assume-yes install google-chrome-stable
+    apt-get --assume-yes --fix-missing install google-chrome-stable
     error_exit $? "${RED}-> Failed to install google chrome${NC}"
     print_done_install "google chrome"
 }
@@ -65,7 +65,7 @@ function install_mongo_db()
     apt-key adv --keyserver hkp://keyserver.ubuntu.com:80 --recv 0C49F3730359A14518585931BC711F9BA15703C6
     echo "deb [ arch=amd64,arm64 ] http://repo.mongodb.org/apt/ubuntu xenial/mongodb-org/3.4 multiverse" | tee /etc/apt/sources.list.d/mongodb-org-3.4.list
     apt-get update
-    apt-get --assume-yes install -y mongodb-org
+    apt-get --assume-yes --fix-missing install -y mongodb-org
     update_mongo_conf
     print_done_install "mongo db"
 }
@@ -75,7 +75,7 @@ function install_mqtt()
     print_start_install "mosquitto (mqtt)"
     apt-add-repository ppa:mosquitto-dev/mosquitto-ppa
     apt-get update
-    apt-get --assume-yes install mosquitto mosquitto-clients mosquitto-auth-plugin mosquitto-dbg mosquitto-dev
+    apt-get --assume-yes --fix-missing install mosquitto mosquitto-clients mosquitto-auth-plugin mosquitto-dbg mosquitto-dev
     systemctl enable mosquitto.service
     wget -O ${HOME}/Downloads/mqtt-spy-1.0.0.jar https://github.com/eclipse/paho.mqtt-spy/releases/download/1.0.0/mqtt-spy-1.0.0.jar
     print_done_install "mosquitto (mqtt)"
