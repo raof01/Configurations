@@ -1,0 +1,45 @@
+    4  sudo apt-get install openvpn
+    5  sudo apt-get install easy-rsa
+    6  su
+    7  sudo passwd openvpn
+    8  make-cadir ~/openvpn-ca
+    9  cd ~/openvpn-ca
+   10  ls
+   11  vi vars
+   12  source vars
+   13  ./clean-all
+   14  ./build-ca
+   15  ./build-key-server VpnSrv
+   16  ./build-dh
+   17  echo $?
+   18  openvpn --genkey --secret keys/ta.key
+   19  ./build-key MacClient
+   20  cd keys/
+   21  ls
+   23  sudo cp ca.crt ca.key VpnSrv.crt VpnSrv.key ta.key dh2048.pem /etc/openvpn
+   24  gunzip -c /usr/share/doc/openvpn/examples/sample-config-files/server.conf.gz | sudo tee /etc/openvpn/VpnSrv.conf
+   25  sudo nano /etc/openvpn/VpnSrv.conf
+   26  sudo emacs /etc/openvpn/VpnSrv.conf
+   27  sudo vi /etc/openvpn/VpnSrv.conf
+   28  sudo vi /etc/sysctl.conf
+   29  sudo sysctl -p
+   30  ip route | grep default
+   31  sudo vi /etc/ufw/before.rules
+   32  sudo vi /etc/default/ufw
+   33  sudo ufw allow 443/tcp
+   34  sudo ufw allow OpenSSH
+   35  sudo ufw disable
+   36  sudo ufw enable
+   37  sudo systemctl start openvpn@VpnSrv
+   38  sudo systemctl status openvpn@VpnSrv
+   39  ip addr show tun0
+   40  sudo systemctl enable openvpn@VpnSrv
+   41  mkdir -p ~/client-configs/files
+   42  chmod 700 ~/client-configs/files
+   43  cp /usr/share/doc/openvpn/examples/sample-config-files/client.conf ~/client-configs/base.conf
+   44  vi ~/client-configs/base.conf
+   45  vi ~/client-configs/make_config.sh
+   46  chmod 700 ~/client-configs/make_config.sh
+   47  cd ~/client-configs
+   48  ./make_config.sh MacClient
+   49  ls ~/client-configs/files
