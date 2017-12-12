@@ -9,6 +9,7 @@
   - meld
   - Octave
   - R Studio
+  - git-el (ubuntu)
   - Emacs
       -   intero
       -   xcscope             
