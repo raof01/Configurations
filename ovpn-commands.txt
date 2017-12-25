@@ -1,11 +1,16 @@
+    # reference: https://www.digitalocean.com/community/tutorials/how-to-set-up-an-openvpn-server-on-ubuntu-16-04#step-1-install-openvpn
     4  sudo apt-get install openvpn
     5  sudo apt-get install easy-rsa
-    6  su
     7  sudo passwd openvpn
     8  make-cadir ~/openvpn-ca
     9  cd ~/openvpn-ca
-   10  ls
    11  vi vars
+             export KEY_COUNTRY="CN"
+             export KEY_PROVINCE="BJ"
+             export KEY_CITY="BJ"
+             export KEY_ORG="Felix"
+             export KEY_EMAIL="raof01@gmail.com"
+             export KEY_OU="FR"
    12  source vars
    13  ./clean-all
    14  ./build-ca
@@ -15,17 +20,38 @@
    18  openvpn --genkey --secret keys/ta.key
    19  ./build-key MacClient
    20  cd keys/
-   21  ls
    23  sudo cp ca.crt ca.key VpnSrv.crt VpnSrv.key ta.key dh2048.pem /etc/openvpn
    24  gunzip -c /usr/share/doc/openvpn/examples/sample-config-files/server.conf.gz | sudo tee /etc/openvpn/VpnSrv.conf
-   25  sudo nano /etc/openvpn/VpnSrv.conf
-   26  sudo emacs /etc/openvpn/VpnSrv.conf
-   27  sudo vi /etc/openvpn/VpnSrv.conf
+   25  sudo emacs /etc/openvpn/VpnSrv.conf
+           ;tls-auth ta.key 0 # This file is secret
+           key-direction 0
+           ...
+           cipher AES-128-CBC   # AES
+           auth SHA256
+           ...
+           user nobody
+           group nogroup         
+           ...
+           push "redirect-gateway def1 bypass-dhcp"
+           ...
+           push "dhcp-option DNS 208.67.222.222"
+           push "dhcp-option DNS 208.67.220.220"
+           ...
+           port 443
+           proto tcp
+           ...
+           cert VpnSrv.crt
+           key VpnSrv.key 
+           ...
    28  sudo vi /etc/sysctl.conf
+           net.ipv4.ip_forward=1
    29  sudo sysctl -p
    30  ip route | grep default
+           default via 10.0.0.1 dev eth0
    31  sudo vi /etc/ufw/before.rules
+           -A POSTROUTING -s 10.8.0.0/8 -o eth0 -j MASQUERADE
    32  sudo vi /etc/default/ufw
+           DEFAULT_FORWARD_POLICY="ACCEPT"
    33  sudo ufw allow 443/tcp
    34  sudo ufw allow OpenSSH
    35  sudo ufw disable
@@ -38,7 +64,38 @@
    42  chmod 700 ~/client-configs/files
    43  cp /usr/share/doc/openvpn/examples/sample-config-files/client.conf ~/client-configs/base.conf
    44  vi ~/client-configs/base.conf
+           proto tcp
+           ...
+           remote 52.231.29.152 443
+           ... 
+           #ca ca.crt
+           #cert client.crt
+           #key client.key
+           ...
+           cipher AES-128-CBC
+           auth SHA256
+           key-direction 1
+           ...
+           # script-security 2
+           # up /etc/openvpn/update-resolv-conf
+           # down /etc/openvpn/update-resolv-conf
    45  vi ~/client-configs/make_config.sh
+           #!/bin/bash
+           # First argument: Client identifier
+           KEY_DIR=~/openvpn-ca/keys
+           OUTPUT_DIR=~/client-configs/files
+           BASE_CONFIG=~/client-configs/base.conf
+           cat ${BASE_CONFIG} \
+               <(echo -e '<ca>') \
+               ${KEY_DIR}/ca.crt \
+               <(echo -e '</ca>\n<cert>') \
+               ${KEY_DIR}/${1}.crt \
+               <(echo -e '</cert>\n<key>') \
+               ${KEY_DIR}/${1}.key \
+               <(echo -e '</key>\n<tls-auth>') \
+               ${KEY_DIR}/ta.key \
+               <(echo -e '</tls-auth>') \
+               > ${OUTPUT_DIR}/${1}.ovpn
    46  chmod 700 ~/client-configs/make_config.sh
    47  cd ~/client-configs
    48  ./make_config.sh MacClient
