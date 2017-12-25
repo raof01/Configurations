@@ -4,13 +4,20 @@
     7  sudo passwd openvpn
     8  make-cadir ~/openvpn-ca
     9  cd ~/openvpn-ca
-   11  vi vars
+    #
+    # 变量
+    #
+    # KEY_SERVER = VpnSrv
+    # ClientName = MacClient
+    #
+   11  vi vars
              export KEY_COUNTRY="CN"
              export KEY_PROVINCE="BJ"
              export KEY_CITY="BJ"
              export KEY_ORG="Felix"
              export KEY_EMAIL="raof01@gmail.com"
              export KEY_OU="FR"
+             export KEY_SERVER="VpnSrv"
    12  source vars
    13  ./clean-all
    14  ./build-ca
@@ -49,7 +56,14 @@
    30  ip route | grep default
            default via 10.0.0.1 dev eth0
    31  sudo vi /etc/ufw/before.rules
+           # START OPENVPN RULES
+           # NAT table rules
+           *nat
+           :POSTROUTING ACCEPT [0:0]
+           # Allow traffic from OpenVPN client to wlp11s0 (change to the interface you discovered!)
            -A POSTROUTING -s 10.8.0.0/8 -o eth0 -j MASQUERADE
+           COMMIT
+           # END OPENVPN RULES
    32  sudo vi /etc/default/ufw
            DEFAULT_FORWARD_POLICY="ACCEPT"
    33  sudo ufw allow 443/tcp
