@@ -77,6 +77,8 @@
     - SSHFS
 
 ** Linux
+    -  glances
+    -  ncdu
     -  GCC/G++
     -  CMAKE
     -  Qt
