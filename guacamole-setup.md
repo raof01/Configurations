@@ -1,22 +1,15 @@
-# Guacamole Setup
+# Guacamole Setup - from source
+## Virtual box shared folder
+1. sudo apt-get install virtualbox-guest-utils
+2. sudo usermod -aG vboxsf userName
 ## Install Dependencies
 1. install from apt
 ```
-sudo apt install xfce4
-sudo apt install gcc-6 g++-6
-sudo apt install tightvncserver
-sudo apt install tomcat8
-sudo apt install nginx
+sudo apt install lxde --no-install-recommends gcc-6 g++-6 tightvncserver tomcat8 nginx
 ````
-2. install java: download from java.oracle.com, and unzip file:
-```
-sudo mkdir /usr/java && sudo tar xvfz jdk.tar.gz -C /usr/java --strip-components=1
-sudo update-alternatives --install /usr/bin/java java /usr/java/bin/java 0
-sudo ln -s /usr/java /usr/lib/jvm/default-java
-```
 ## Build guacamole server from source
-1. download guacamole server & client from https://guacamole.apache.org
-2. install dependent libraries
+2. download guacamole server & client from https://guacamole.apache.org
+3. install dependent libraries
 ```
 sudo apt install libpng-dev libfreerdp-dev libpango1.0-dev libavcodec-dev libavutil-dev libssh2-1-dev libssl1.0-dev libswscale-dev libtelnet-dev libvncserver-dev libvorbis-dev libpulse-dev libwebp-dev libossp-uuid-dev
 ```
@@ -30,12 +23,13 @@ sudo ldconfig
 4. install guacamole client
 ```
 cp guacamole.war /var/lib/tomcat8/webapps
+sudo chown tomcat8:tomcat8 /var/lib/tomcat8/webapps/guacamole.war
 ```
 ## Configure Users
 ```
 sudo mkdir /etc/guacamole
 ```
-1. user-mapping.xml
+1. sudo vi /etc/guacamole/user-mapping.xml
 ```
 <user-mapping>
 	
@@ -76,5 +70,27 @@ sudo mkdir /etc/guacamole
 ```
 2. /usr/bin/vncserver
 3. start vncserver
-## Configuration NGINX
-## Configuration SSL
+# Configuration NGINX
+# Configuration SSL
+```
+openssl pkcs12 -in /usr/local/nginx/ssl/xxx.pfx -clcerts -nokeys -out /usr/local/nginx/ssl/xxx.crt
+openssl pkcs12 -in /usr/local/nginx/ssl/xxx.pfx -nocerts -nodes -out /usr/local/nginx/ssl/xxx.rsa
+```
+# Boot to text mode
+- backup
+```
+sudo cp -n /etc/default/grub /etc/default/grub.orig
+```
+- sudo gedit /etc/default/grub
+```
+1. Comment the line GRUB_CMDLINE_LINUX_DEFAULT=”quiet splash”
+2. Change GRUB_CMDLINE_LINUX=”” to GRUB_CMDLINE_LINUX=”text”
+3. Uncomment this line #GRUB_TERMINAL=console
+```
+- update grub
+```
+sudo update-grub
+sudo systemctl set-default multi-user.target
+```
+## Guacamole setup - Docker
+https://guacamole.apache.org
