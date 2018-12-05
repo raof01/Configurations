@@ -136,6 +136,8 @@ zle -N deer
 #alias lk='k --no-vcs'
 #
 local ret_status="%(?:%{$fg_bold[green]%}[  0]:%{$fg_bold[red]%}%(?..[%?]))"
+# add date time to prompt:
+# PS1="$PS1"'\[\033[36m\]'"$(date +"%Y-%m-%d %H:%M:%S") "
 export PS1='%{$fg[yellow]%}%n@%m %{$fg[cyan]%}%d%{$reset_color%} $(git_prompt_info)
 ${ret_status}%{$reset_color%} $> '
 
