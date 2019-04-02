@@ -86,30 +86,7 @@ POWERLEVEL9K_RPROMPT_ON_NEWLINE=false
 POWERLEVEL9K_DIR_BACKGROUND='cyan'
 
 alias h='history'
-export PATH=/home/raof01/anaconda3/bin:$PATH
-YELLOW='\033[1;33m'
-GREEN='\033[0;32m'
-NC='\033[0m' # No Color
 
-update_repo()
-{
-    cur=$(pwd)
-    cd $1
-    for d in $(ls)
-    do
-        if [ ! -d $d ];
-        then
-            continue
-        fi
-        cd $d
-        echo -e "${GREEN}=> Updating $(basename $d) ...${NC}"
-        git pull
-        cd ..
-    done
-    cd $cur
-}
-
-alias update-src-folders='update_repo ${HOME}/workspace/code-repos'
 #[ -z "$HISTFILE" ] && HISTFILE="$HOME/.zsh_history"
 #HISTSIZE=50000
 #SAVEHIST=10000
