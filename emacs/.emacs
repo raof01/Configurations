@@ -54,3 +54,4 @@
 (global-linum-mode)
 (global-hl-line-mode t)
 
+(global-set-key (kbd "M-g l") 'goto-line)
