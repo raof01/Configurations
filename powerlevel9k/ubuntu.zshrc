@@ -77,7 +77,7 @@ export TERM="xterm-256color"
 export ZSH=${HOME}/.oh-my-zsh
 
 ZSH_THEME="powerlevel9k/powerlevel9k"
-POWERLEVEL9K_MODE="awesome-fontconfig"
+POWERLEVEL9K_MODE="nerdfont-complete"
 
 source ${HOME}/.oh-my-zsh/custom/themes/powerlevel9k/functions/icons.zsh
 source ${HOME}/.oh-my-zsh/custom/themes/powerlevel9k/functions/utilities.zsh
