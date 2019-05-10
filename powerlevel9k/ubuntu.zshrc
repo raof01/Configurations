@@ -1,6 +1,7 @@
 # Antigen: https://github.com/zsh-users/antigen
 source ${HOME}/.fonts/*.sh
-
+[[ -s /home/raof01/.autojump/etc/profile.d/autojump.sh ]] && source /home/raof01/.autojump/etc/profile.d/autojump.sh
+autoload -U compinit && compinit -u
 ANTIGEN="$HOME/.local/bin/antigen.zsh"
 
 # Install antigen.zsh if not exist
