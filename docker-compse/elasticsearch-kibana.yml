@@ -41,13 +41,56 @@ services:
       - elastic
     ports:
       - 9200:9200
+  elasticsearch2:
+    image: elasticsearch:7.2.0
+    container_name: elasticsearch2
+    environment:
+      - node.name=elasticsearch2
+      - cluster.name=docker-cluster
+      - cluster.initial_master_nodes=elasticsearch1
+      - bootstrap.memory_lock=true
+      - "ES_JAVA_OPTS=-Xms256M -Xmx256M"
+      - "discovery.zen.ping.unicast.hosts=elasticsearch1"
+      - http.cors.enabled=true
+      - http.cors.allow-origin=*
+      - network.host=_eth0_
+      - MAX_MAP_COUNT=262144
+    ulimits:
+      nproc: 65535
+      memlock:
+        soft: -1
+        hard: -1
+    cap_add:
+      - ALL
+    deploy:
+      replicas: 1
+      update_config:
+        parallelism: 1
+        delay: 10s
+      resources:
+        limits:
+          cpus: '1'
+          memory: 256M
+        reservations:
+          cpus: '1'
+          memory: 256M
+      restart_policy:
+        condition: on-failure
+        delay: 5s
+        max_attempts: 3
+        window: 10s
     volumes:
       - type: volume
         source: logs
         target: /var/log
       - type: volume
-        source: esdata1
+        source: esdata2
         target: /usr/share/elasticsearch/data
+    networks:
+      - elastic
+    ports:
+      - 9201:9200
+  
   kibana:
     image: kibana:7.2.0
     container_name: kibana
@@ -90,4 +133,5 @@ networks:
   elastic:
 volumes:
   esdata1:
+  esdata2:
   logs:
