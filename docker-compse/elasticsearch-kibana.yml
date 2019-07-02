@@ -41,6 +41,7 @@ services:
       - elastic
     ports:
       - 9200:9200
+      - 9300:9300
   elasticsearch2:
     image: elasticsearch:7.2.0
     container_name: elasticsearch2
