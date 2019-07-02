@@ -20,23 +20,9 @@ services:
         hard: -1
     cap_add:
       - ALL
-    deploy:
-      replicas: 1
-      update_config:
-        parallelism: 1
-        delay: 10s
-      resources:
-        limits:
-          cpus: '1'
-          memory: 256M
-        reservations:
-          cpus: '1'
-          memory: 256M
-      restart_policy:
-        condition: on-failure
-        delay: 5s
-        max_attempts: 3
-        window: 10s
+    volumes:
+      - ./logs:/var/log
+      - ./esdata1:/usr/share/elasticsearch/data
     networks:
       - elastic
     ports:
@@ -63,30 +49,9 @@ services:
         hard: -1
     cap_add:
       - ALL
-    deploy:
-      replicas: 1
-      update_config:
-        parallelism: 1
-        delay: 10s
-      resources:
-        limits:
-          cpus: '1'
-          memory: 256M
-        reservations:
-          cpus: '1'
-          memory: 256M
-      restart_policy:
-        condition: on-failure
-        delay: 5s
-        max_attempts: 3
-        window: 10s
     volumes:
-      - type: volume
-        source: logs
-        target: /var/log
-      - type: volume
-        source: esdata2
-        target: /usr/share/elasticsearch/data
+      - ./logs:/var/log
+      - ./esdata2:/usr/share/elasticsearch/data
     networks:
       - elastic
     ports:
@@ -107,29 +72,10 @@ services:
         hard: -1
     cap_add:
       - ALL
-    deploy:
-      replicas: 1
-      update_config:
-        parallelism: 1
-        delay: 10s
-      resources:
-        limits:
-          cpus: '1'
-          memory: 256M
-        reservations:
-          cpus: '1'
-          memory: 256M
-      restart_policy:
-        condition: on-failure
-        delay: 30s
-        max_attempts: 3
-        window: 120s
     networks:
       - elastic
     volumes:
-      - type: volume
-        source: logs
-        target: /var/log
+      - ./logs:/var/log
 networks:
   elastic:
 volumes:
