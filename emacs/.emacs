@@ -55,3 +55,9 @@
 (global-hl-line-mode t)
 
 (global-set-key (kbd "M-g l") 'goto-line)
+(defun show-file-name ()
+  "Show the full path file name in the minibuffer."
+  (interactive)
+  (message (buffer-file-name)))
+
+(global-set-key [C-f1] 'show-file-name) ; Or any other key you want
