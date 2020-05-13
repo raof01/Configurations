@@ -1,0 +1,19 @@
+version: "3"
+
+# More info at https://github.com/oracle/opengrok/docker/
+services:
+  opengrok:
+    container_name: opengrok
+    image: opengrok/docker:latest
+    ports:
+      - "8899:8080/tcp"
+    environment:
+      REINDEX: "60"
+      OPENGROK_ASSIGNMENTS: "-A .es6:org.opengrok.indexer.analysis.javascript.JavaScriptAnalyzerFactory"
+      INDEXER_OPT: "-i d:.git -i d:node_modules -i d:build -i d:.gradle -i d:.idea -i f:.gitignore -i f:CMakLists.txt.user -i d:.vscode -i d:.stack-work -i d:*.xcodeproj -i d:.vs -i d:Debug -i d:Release -i d:packages -i d:bin -i d:dist"
+      OPENGROK_SCAN_DEPTH: 3
+    # Volumes store your data between container upgrades
+    volumes:
+      - "~/workspace/code-repos/:/opengrok/src/" # source code
+      - "~/docker-compose/opengrok/:/opengrok/etc/" # folder contains configuration.xml
+      - "~/docker-compose/opengrok/:/opengrok/data/" # index and other things for source code
