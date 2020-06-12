@@ -1,0 +1,18 @@
+version: '3.7'
+services:
+  my-mongoDB:
+    image: mongo:latest
+    container_name: mongodb
+    volumes:
+      - db-data:/data/db
+      - db-config:/data/configdb
+    networks:
+      - mongo_network
+    ports:
+      - 27017:27017
+ 
+volumes:
+  db-data:
+  db-config:
+networks:
+  mongo_network:
