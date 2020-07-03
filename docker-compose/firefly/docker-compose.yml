@@ -1,0 +1,27 @@
+version: '3.3'
+
+services:
+  fireflyiii:
+    image: jc5x/firefly-iii:latest
+    volumes:
+      - firefly_iii_export:/var/www/firefly-iii/storage/export
+      - firefly_iii_upload:/var/www/firefly-iii/storage/upload
+    env_file: .env
+    ports:
+      - 8900:80
+    depends_on:
+      - fireflyiiidb
+  fireflyiiidb:
+    image: yobasystems/alpine-mariadb:latest
+    environment:
+      - MYSQL_RANDOM_ROOT_PASSWORD=yes
+      - MYSQL_USER=CHANGEME
+      - MYSQL_PASSWORD=CHANGEME
+      - MYSQL_DATABASE=firefly
+    volumes:
+      - firefly_iii_db:/var/lib/mysql
+
+volumes:
+   firefly_iii_export:
+   firefly_iii_upload:
+   firefly_iii_db:
