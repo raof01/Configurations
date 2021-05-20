@@ -10,14 +10,12 @@ APP_DEBUG=false
 SITE_OWNER=raof01@gmail.com
 
 # The encryption key for your sessions. Keep this very secure.
-# If you generate a new one all existing attachments must be considered LOST.
 # Change it to a string of exactly 32 chars or use something like `php artisan key:generate` to generate it.
 # If you use Docker or similar, you can set this variable from a file by using APP_KEY_FILE
 APP_KEY=8ec1abc0bc2711eaa11000224805438b
 
-#
 # Firefly III will launch using this language (for new users and unauthenticated visitors)
-# For a list of available languages: https://github.com/firefly-iii/firefly-iii/tree/master/resources/lang
+# For a list of available languages: https://github.com/firefly-iii/firefly-iii/tree/main/resources/lang
 #
 # If text is still in English, remember that not everything may have been translated.
 DEFAULT_LANGUAGE=zh_CN
@@ -54,16 +52,23 @@ LOG_CHANNEL=stack
 # nothing will get logged, ever.
 APP_LOG_LEVEL=notice
 
+# Audit log level.
+# set to "emergency" if you dont want to store audit logs.
+# leave on info otherwise.
+AUDIT_LOG_LEVEL=info
+
 # Database credentials. Make sure the database exists. I recommend a dedicated user for Firefly III
 # For other database types, please see the FAQ: https://docs.firefly-iii.org/support/faq
 # If you use Docker or similar, you can set these variables from a file by appending them with _FILE
-# Use "pgsql" for PostgreSQL and MariaDB. Use "sqlite" for SQLite.
+# Use "pgsql" for PostgreSQL
+# Use "mysql" for MySQL and MariaDB.
+# Use "sqlite" for SQLite.
 DB_CONNECTION=mysql
-DB_HOST=fireflyiiidb
+DB_HOST=db
 DB_PORT=3306
 DB_DATABASE=firefly
-DB_USERNAME=CHANGEME
-DB_PASSWORD=CHAMGEME
+DB_USERNAME=firefly
+DB_PASSWORD=secret_firefly_password
 
 # MySQL supports SSL. You can configure it here.
 # If you use Docker or similar, you can set these variables from a file by appending them with _FILE
@@ -91,9 +96,18 @@ SESSION_DRIVER=file
 # If you set either of these to 'redis', you might want to update these settings too
 # If you use Docker or similar, you can set REDIS_HOST_FILE, REDIS_PASSWORD_FILE or
 # REDIS_PORT_FILE to set the value from a file instead of from an environment variable
+
+# can be tcp, unix or http
+REDIS_SCHEME=tcp
+
+# use only when using 'unix' for REDIS_SCHEME. Leave empty otherwise.
+REDIS_PATH=
+
+# use only when using 'tcp' or 'http' for REDIS_SCHEME. Leave empty otherwise.
 REDIS_HOST=127.0.0.1
-REDIS_PASSWORD=null
 REDIS_PORT=6379
+
+REDIS_PASSWORD=null
 # always use quotes and make sure redis db "0" and "1" exists. Otherwise change accordingly.
 REDIS_DB="0"
 REDIS_CACHE_DB="1"
@@ -104,6 +118,7 @@ REDIS_CACHE_DB="1"
 COOKIE_PATH="/"
 COOKIE_DOMAIN=
 COOKIE_SECURE=false
+COOKIE_SAMESITE=lax
 
 # If you want Firefly III to mail you, update these settings
 # For instructions, see: https://docs.firefly-iii.org/advanced-installation/email
@@ -130,46 +145,46 @@ MAILGUN_ENDPOINT=api.mailgun.net
 MANDRILL_SECRET=
 SPARKPOST_SECRET=
 
-
 # Firefly III can send you the following messages
 SEND_REGISTRATION_MAIL=true
 SEND_ERROR_MESSAGE=true
+SEND_LOGIN_NEW_IP_WARNING=true
 
 # These messages contain (sensitive) transaction information:
 SEND_REPORT_JOURNALS=true
 
 # Set a Mapbox API key here (see mapbox.com) so there might be a map available at various places.
 # If you use Docker or similar, you can set this variable from a file by appending it with _FILE
+# Take note: it is no longer necessary to set this value, and it will be removed in future versions.
 MAPBOX_API_KEY=
 
+#
+# Instead of the mapbox API key, just set this value to true if you want to set the location
+# of certain things, like transactions. Since this involves an external service, it's optional
+# and disabled by default.
+#
+ENABLE_EXTERNAL_MAP=false
+
 # The map will default to this location:
-MAP_DEFAULT_LAT=39.9042
-MAP_DEFAULT_LONG=116.4074
+MAP_DEFAULT_LAT=51.983333
+MAP_DEFAULT_LONG=5.916667
 MAP_DEFAULT_ZOOM=6
-
-# Firefly III currently supports two provider for live Currency Exchange Rates:
-# "fixer", and "ratesapi".
-# RatesApi.IO (see https://ratesapi.io) is a FREE and OPEN SOURCE live currency exchange rates,
-# built compatible with Fixer.IO, based on data published by European Central Bank, and doesn't require API key.
-CER_PROVIDER=ratesapi
-
-# If you have select "fixer" as default currency exchange rates,
-# set a Fixer IO API key here (see https://fixer.io) to enable live currency exchange rates.
-# Please note that this WILL ONLY WORK FOR PAID fixer.io accounts because they severely limited
-# the free API up to the point where you might as well offer nothing.
-# If you use Docker or similar, you can set this variable from a file by appending it with _FILE
-FIXER_API_KEY=
 
 # Firefly III has two options for user authentication. "eloquent" is the default,
 # and "ldap" for LDAP servers.
 # For full instructions on these settings please visit:
 # https://docs.firefly-iii.org/advanced-installation/authentication
 # If you use Docker or similar, you can set this variable from a file by appending it with _FILE
+#
+# If you enable 'ldap' AND you run Docker, the Docker image will contact packagist.org
+# This is necessary to download the required packages.
+#
 LOGIN_PROVIDER=eloquent
 
-#
 # It's also possible to change the way users are authenticated. You could use Authelia for example.
 # Authentication via the REMOTE_USER header is supported. Change the value below to "remote_user_guard".
+#
+# This will also allow Windows SSO.
 #
 # If you do this please read the documentation for instructions and warnings:
 # https://docs.firefly-iii.org/advanced-installation/authentication
@@ -177,8 +192,30 @@ LOGIN_PROVIDER=eloquent
 # This function is available in Firefly III v5.3.0 and higher.
 AUTHENTICATION_GUARD=web
 
+# If the guard is changed, Firefly III uses the 'REMOTE_USER' header as per RFC 3875.
+# You can also use another header, like AUTH_USER when using Windows SSO.
+# Some systems use X-Auth headers. In that case, use HTTP_X_AUTH_USERNAME or HTTP_X_AUTH_EMAIL
+# Depending on your system, REMOTE_USER may need to be changed to HTTP_REMOTE_USER
 #
-# Likewise, it's impossible to log out users who's authentication is handled by an external system.
+# If this header is 'unexpectedly empty', check out the documentation.
+# https://docs.firefly-iii.org/advanced-installation/authentication
+#
+AUTHENTICATION_GUARD_HEADER=REMOTE_USER
+
+#
+# Firefly III uses email addresses as user identifiers. When you're using an external authentication guard
+# that doesn't do this, Firefly III is incapable of emailing you. Messages sent to "Bill Gates" always fail.
+#
+# However, if you set this value, Firefly III will store the value from this header as the user's backup
+# email address and use it to communicate. So user "Bill Gates" could still have
+# the email address "bill@microsoft.com".
+#
+# Example value: AUTHENTICATION_GUARD_EMAIL=HTTP_X_AUTH_EMAIL
+#
+AUTHENTICATION_GUARD_EMAIL=
+
+
+# It's impossible to log out users who's authentication is handled by an external system.
 # Enter a custom URL here that will force a logout (your authentication provider can tell you).
 # Setting this variable only works when AUTHENTICATION_GUARD != web
 #
@@ -217,19 +254,12 @@ ADLDAP_ADMIN_PASSWORD=
 ADLDAP_ACCOUNT_PREFIX=
 ADLDAP_ACCOUNT_SUFFIX=
 
-
 # LDAP authentication settings.
 ADLDAP_PASSWORD_SYNC=false
 ADLDAP_LOGIN_FALLBACK=false
 
 ADLDAP_DISCOVER_FIELD=distinguishedname
 ADLDAP_AUTH_FIELD=distinguishedname
-
-# Will allow SSO if your server provides an AUTH_USER field.
-# You can set the following variables from a file by appending them with _FILE:
-WINDOWS_SSO_ENABLED=false
-WINDOWS_SSO_DISCOVER=samaccountname
-WINDOWS_SSO_KEY=AUTH_USER
 
 # field to sync as local username.
 # You can set the following variable from a file by appending it with _FILE:
@@ -254,11 +284,15 @@ DISABLE_CSP_HEADER=false
 TRACKER_SITE_ID=
 TRACKER_URL=
 
-#
 # Firefly III can collect telemetry on how you use Firefly III. This is opt-in.
 # In order to allow this, change the following variable to true.
 # To read more about this feature, go to this page: https://docs.firefly-iii.org/support/telemetry
 SEND_TELEMETRY=false
+
+#
+# Firefly III supports webhooks. These are security sensitive and must be enabled manually first.
+#
+ALLOW_WEBHOOKS=false
 
 # You can fine tune the start-up of a Docker container by editing these environment variables.
 # Use this at your own risk. Disabling certain checks and features may result in lost of inconsistent data.
@@ -297,13 +331,12 @@ ADLDAP_CONNECTION=default
 BROADCAST_DRIVER=log
 QUEUE_DRIVER=sync
 CACHE_PREFIX=firefly
-SEARCH_RESULT_LIMIT=50
 PUSHER_KEY=
+IPINFO_TOKEN=
 PUSHER_SECRET=
 PUSHER_ID=
 DEMO_USERNAME=
 DEMO_PASSWORD=
-USE_ENCRYPTION=false
 IS_HEROKU=false
 FIREFLY_III_LAYOUT=v1
 
@@ -317,6 +350,4 @@ FIREFLY_III_LAYOUT=v1
 #
 # If you're stuck I understand you get desperate but look SOMEWHERE ELSE.
 #
-APP_URL=http://app.raof01.net
-VIRTUAL_HOST=app.raof01.net
-LETSENCRYPT_HOST=letsencrypt
+APP_URL=https://app.raof01.cc/
